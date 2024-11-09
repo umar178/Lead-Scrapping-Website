@@ -1,4 +1,82 @@
-.Right{
-    width: 500px;
-    background-color: purple
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
 }
+
+body {
+    background-color: lightblue;
+}
+
+.Left {
+    width: 500px;
+    height: 100vh;
+    padding-top: 250px;
+    background-color: white;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.Form {
+    padding-top: 80px;
+    margin-right:30px;
+    margin-left:30px;
+    height: 200px;
+    box-shadow: 5px 0 15px rgba(0.15, 0.15,0.15, 0.15);
+}
+
+input[type="text"] {
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 2px solid #a2c2e2; 
+    border-radius: 8px; 
+    background-color: #f0f8ff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+    
+input[type="text"]:focus {
+    border-color: #66aadd; 
+    box-shadow: 0 0 5px rgba(102, 170, 221, 0.7); 
+}
+
+.Form_Submit {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #a2c2e2; 
+    color: white; 
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+Form_Submit:hover {
+    background-color: #66aadd; 
+    transform: translateY(-2px);
+}
+
+Form_Submit:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(102, 170, 221, 0.7);
+}
+
+/*
+.Right {
+    width: 1500px;
+    height: 105vh;
+    background-color: purple;
+    float: right;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
+}
+*/
+
+/*
+.page {
+    display: flex;
+    justify-content: flex-end;
+}
+*/
