@@ -2,39 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lead Scrapper</title>
     <link rel="stylesheet" href="\static\style.css">
 </head>
 <body>
 
-<div class="page">
-    <div class="Left">
-        <div class="Form">
-            <center>
-                <form>
+    <div class="page">
+        <div class="Left">
+            <div class="Form">
+                <center>
+                    <form method="post" action="\">
 
-                    <div class="Inputs">
-                        <h2>Category</h2>
-                        <input class="category" type="text" name="category" id="c" placeholder="e.g Industrial Design">
-                        <br>
-                        <h2>Location</h2>
-                        <input class="location" type="text" name="location" id="l" placeholder="e.g United States">
-                    </div>
+                        <div class="Inputs">
+                            <h2>Category</h2>
+                            <input class="category" type="text" name="category" id="category" placeholder="e.g Industrial Design">
+                            <br>
+                            <h2>Location</h2>
+                            <input class="location" type="text" name="location" id="location" placeholder="e.g United States">
+                            <h2>Timeout (in mins)</h2>
+                            <input class="timeout" type="number" name="timeout" id="timeout" placeholder="e.g 3" min="1" max="60" step="1">
+                        </div>
 
-                    <div class="submit">
-                        <input class="Form_Submit" type="submit" value="Run" style="margin-top:20px"></input>
-                    </div>
+                        <div class="submit">
+                            <input class="Form_Submit" type="submit" value="Run" style="margin-top:20px"></input>
+                        </div>
 
-                </form>
-            </center>
+                    </form>
+                </center>
+            </div>
+            <center><p>Please wait for the given timeout to get output</p></center>
+            
         </div>
+
+        {% if show_table %}
+        <div class="Right">
+
+            {% if rows %}
+            <h2>Output</h2>
+            <div class="scrollable-table">
+                <table>
+                    <thead>
+                        <tr>
+                            {% for column in rows[0].keys() %}
+                            <th>{{ column }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in rows %}
+                        <tr>
+                            {% for value in row.values() %}
+                            <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="{{ url_for('download_csv') }}" class="download-btn">Download CSV</a>
+            {% endif %}
+        </div>
+        {% endif %}
+
     </div>
-
-    <div class="Right">
-
-    </div>
-
-</div>
 
 
 </body>
