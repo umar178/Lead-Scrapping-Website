@@ -24,6 +24,11 @@ def render_home():
         return render_template("index.html", show_table=False)
 
 
+@app.route('/Details')
+def details():
+    return render_template('Details.html')
+
+
 def format_csv():
     input_file = 'google-maps-scraper\\outputs\\result.csv'  # Path to existing CSV file
     output_file = 'google-maps-scraper\\outputs\\output.csv'  # Path to the new CSV file

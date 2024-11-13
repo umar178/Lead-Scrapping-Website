@@ -3,21 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Lead Scrapper</title>
-    <link rel="stylesheet" href="\static\style.css">
+    <link rel="stylesheet" href="\static\DetailStyle.css">
 </head>
 <body>
 
     <div class="page">
         <div class="Left">
+            <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+            <div id="menu" class="menu">
+                <ul>
+                    <li><a href="{{ url_for('render_home') }}">Scrapper</a></li>
+                    <li><a href="{{ url_for('details') }}">Project Details</a></li>
+                </ul>
+            </div>
 
+            <div class="Left">
+
+                <center>
+                    <div class="options">
+                        <button>Project Overview</button>
+                        <br />
+                        <button>Members</button>
+                        <br />
+                        <button>Scope</button>
+                        <br />
+                        <button>Functionality</button>
+                    </div>
+                </center>
+
+            </div>
+
+            <div class="Right">
+                <p>hi</p>
+            </div>
         </div>
-
-        <div class="Right">
-
-        </div>
-
     </div>
 
-
+    <script src="\static\script.js"></script>
 </body>
 </html>

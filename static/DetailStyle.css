@@ -1,0 +1,122 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+}
+
+body {
+    background-color: lightblue;
+    font-family: Georgia, sans-serif;
+}
+
+.page {
+    display: flex;
+    justify-content: flex-end;
+}
+
+header {
+    height: 100px;
+    background-color: white;
+    box-shadow: 5px 0 15px rgba(0, 0, 0.15, 0);
+}
+
+.HeadTitle{
+    margin-top: 100px;
+}
+
+.Left {
+    width: 500px;
+    height: 100vh;
+    padding-top: 0px;
+    background-color: white;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.Right {
+    padding-left: 100px;
+    padding-top: 100px;
+    height: 100vh;
+    width: 1200px;
+    float: right;
+}
+
+.options{
+    padding-top: 100px;
+}
+
+.options button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 350px;
+    font-size: 30px;
+    margin-bottom: 50px;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 20px;
+    background-color: white;
+    font-family: Georgia, sans-serif;
+}
+
+.overview{
+    width: 500px;
+    height: 500px;
+    font-size: 20px;
+}
+
+
+/*--------------------------------*/
+/*Sidebar Style*/
+
+.menu-btn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.menu {
+    display: none;
+    position: page;
+    top: 50px;
+    right: 20px;
+    background-color: white;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .menu li:last-child {
+        border-bottom: none;
+    }
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.menu a:hover {
+    background-color: #ddd;
+}
+
+/*----------------DETAILS------------------*/
+
