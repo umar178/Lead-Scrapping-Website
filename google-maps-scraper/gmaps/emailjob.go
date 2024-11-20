@@ -5,21 +5,17 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/gosom/google-maps-scraper/exiter"
 	"github.com/gosom/scrapemate"
 	"github.com/mcnijman/go-emailaddress"
 )
 
-type EmailExtractJobOptions func(*EmailExtractJob)
-
 type EmailExtractJob struct {
 	scrapemate.Job
 
-	Entry       *Entry
-	ExitMonitor exiter.Exiter
+	Entry *Entry
 }
 
-func NewEmailJob(parentID string, entry *Entry, opts ...EmailExtractJobOptions) *EmailExtractJob {
+func NewEmailJob(parentID string, entry *Entry) *EmailExtractJob {
 	const (
 		defaultPrio       = scrapemate.PriorityHigh
 		defaultMaxRetries = 0
@@ -37,29 +33,13 @@ func NewEmailJob(parentID string, entry *Entry, opts ...EmailExtractJobOptions) 
 
 	job.Entry = entry
 
-	for _, opt := range opts {
-		opt(&job)
-	}
-
 	return &job
-}
-
-func WithEmailJobExitMonitor(exitMonitor exiter.Exiter) EmailExtractJobOptions {
-	return func(j *EmailExtractJob) {
-		j.ExitMonitor = exitMonitor
-	}
 }
 
 func (j *EmailExtractJob) Process(ctx context.Context, resp *scrapemate.Response) (any, []scrapemate.IJob, error) {
 	defer func() {
 		resp.Document = nil
 		resp.Body = nil
-	}()
-
-	defer func() {
-		if j.ExitMonitor != nil {
-			j.ExitMonitor.IncrPlacesCompleted(1)
-		}
 	}()
 
 	log := scrapemate.GetLoggerFromContext(ctx)

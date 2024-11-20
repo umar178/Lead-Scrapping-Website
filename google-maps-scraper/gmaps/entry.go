@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"runtime/debug"
-	"strconv"
 	"strings"
 )
 
@@ -349,16 +348,11 @@ func EntryFromJSON(raw []byte) (entry Entry, err error) {
 	for i := range reviewsI {
 		el := getNthElementAndCast[[]any](reviewsI, i, 0)
 
-		time := getNthElementAndCast[[]any](el, 2, 2, 0, 1, 21, 6, 8)
-
-		profilePic, err := decodeURL(getNthElementAndCast[string](el, 1, 4, 5, 1))
-		if err != nil {
-			profilePic = ""
-		}
+		time := getNthElementAndCast[[]any](el, 2, 2, 0, 1, 21, 6, 7)
 
 		review := Review{
-			Name:           getNthElementAndCast[string](el, 1, 4, 5, 0),
-			ProfilePicture: profilePic,
+			Name:           getNthElementAndCast[string](el, 1, 4, 0, 4),
+			ProfilePicture: getNthElementAndCast[string](el, 1, 4, 0, 3),
 			When: func() string {
 				if len(time) < 3 {
 					return ""
@@ -543,15 +537,4 @@ func stringify(v any) string {
 		d, _ := json.Marshal(v)
 		return string(d)
 	}
-}
-
-func decodeURL(url string) (string, error) {
-	quoted := `"` + strings.ReplaceAll(url, `"`, `\"`) + `"`
-
-	unquoted, err := strconv.Unquote(quoted)
-	if err != nil {
-		return "", fmt.Errorf("failed to decode URL: %v", err)
-	}
-
-	return unquoted, nil
 }

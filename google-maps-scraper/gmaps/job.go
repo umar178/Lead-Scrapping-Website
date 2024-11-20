@@ -9,13 +9,9 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/google/uuid"
-	"github.com/gosom/google-maps-scraper/deduper"
-	"github.com/gosom/google-maps-scraper/exiter"
 	"github.com/gosom/scrapemate"
 	"github.com/playwright-community/playwright-go"
 )
-
-type GmapJobOptions func(*GmapJob)
 
 type GmapJob struct {
 	scrapemate.Job
@@ -23,19 +19,9 @@ type GmapJob struct {
 	MaxDepth     int
 	LangCode     string
 	ExtractEmail bool
-
-	Deduper     deduper.Deduper
-	ExitMonitor exiter.Exiter
 }
 
-func NewGmapJob(
-	id, langCode, query string,
-	maxDepth int,
-	extractEmail bool,
-	geoCoordinates string,
-	zoom int,
-	opts ...GmapJobOptions,
-) *GmapJob {
+func NewGmapJob(id, langCode, query string, maxDepth int, extractEmail bool) *GmapJob {
 	query = url.QueryEscape(query)
 
 	const (
@@ -47,19 +33,11 @@ func NewGmapJob(
 		id = uuid.New().String()
 	}
 
-	mapURL := ""
-	if geoCoordinates != "" && zoom > 0 {
-		mapURL = fmt.Sprintf("https://www.google.com/maps/search/%s/@%s,%dz", query, strings.ReplaceAll(geoCoordinates, " ", ""), zoom)
-	} else {
-		//Warning: geo and zoom MUST be both set or not
-		mapURL = fmt.Sprintf("https://www.google.com/maps/search/%s", query)
-	}
-
 	job := GmapJob{
 		Job: scrapemate.Job{
 			ID:         id,
 			Method:     http.MethodGet,
-			URL:        mapURL,
+			URL:        "https://www.google.com/maps/search/" + query,
 			URLParams:  map[string]string{"hl": langCode},
 			MaxRetries: maxRetries,
 			Priority:   prio,
@@ -69,23 +47,7 @@ func NewGmapJob(
 		ExtractEmail: extractEmail,
 	}
 
-	for _, opt := range opts {
-		opt(&job)
-	}
-
 	return &job
-}
-
-func WithDeduper(d deduper.Deduper) GmapJobOptions {
-	return func(j *GmapJob) {
-		j.Deduper = d
-	}
-}
-
-func WithExitMonitor(e exiter.Exiter) GmapJobOptions {
-	return func(j *GmapJob) {
-		j.ExitMonitor = e
-	}
 }
 
 func (j *GmapJob) UseInResults() bool {
@@ -113,23 +75,10 @@ func (j *GmapJob) Process(ctx context.Context, resp *scrapemate.Response) (any, 
 	} else {
 		doc.Find(`div[role=feed] div[jsaction]>a`).Each(func(_ int, s *goquery.Selection) {
 			if href := s.AttrOr("href", ""); href != "" {
-				jopts := []PlaceJobOptions{}
-				if j.ExitMonitor != nil {
-					jopts = append(jopts, WithPlaceJobExitMonitor(j.ExitMonitor))
-				}
-
-				nextJob := NewPlaceJob(j.ID, j.LangCode, href, j.ExtractEmail, jopts...)
-
-				if j.Deduper == nil || j.Deduper.AddIfNotExists(ctx, href) {
-					next = append(next, nextJob)
-				}
+				nextJob := NewPlaceJob(j.ID, j.LangCode, href, j.ExtractEmail)
+				next = append(next, nextJob)
 			}
 		})
-	}
-
-	if j.ExitMonitor != nil {
-		j.ExitMonitor.IncrPlacesFound(len(next))
-		j.ExitMonitor.IncrSeedCompleted(1)
 	}
 
 	log.Info(fmt.Sprintf("%d places found", len(next)))

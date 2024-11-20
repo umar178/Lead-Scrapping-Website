@@ -2,7 +2,7 @@
 ![build](https://github.com/gosom/google-maps-scraper/actions/workflows/build.yml/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/gosom/google-maps-scraper)](https://goreportcard.com/report/github.com/gosom/google-maps-scraper)
 
-> A command line and web UI google maps scraper
+> A command line google maps scraper
 
 ---
 
@@ -17,18 +17,10 @@
 		<br>
 		<br>
 		<a href="https://www.searchapi.io/google-maps?via=gosom" rel="nofollow">
-                  <div>
-                    <img src="https://www.searchapi.io/press/v1/svg/searchapi_logo_black_h.svg" width="300" alt="Google Maps API for easy SERP scraping"/>
-                  </div>
-                  <b>Google Maps API for easy SERP scraping</b>
-		</a>
-                <br>
-                <br>
-                <a href="https://www.capsolver.com/?utm_source=github&utm_medium=banner_repo&utm_campaign=scraping&utm_term=giorgos" rel="nofollow">
-                  <div>
-                    <img src="https://raw.githubusercontent.com/gosom/google-maps-scraper/main/img/capsolver-banner.png" alt="Capsolver banner"/>
-                  </div>
-                  <b><a href="https://www.capsolver.com/?utm_source=github&utm_medium=banner_repo&utm_campaign=scraping&utm_term=giorgos" rel="nofollow">CapSolver</a> automates CAPTCHA solving for efficient web scraping. It supports <a href="https://docs.capsolver.com/guide/captcha/ReCaptchaV2.html?utm_source=github&utm_medium=banner_repo&utm_campaign=scraping&utm_term=giorgos" rel="nofolow">reCAPTCHA V2</a>, <a href="https://docs.capsolver.com/guide/captcha/ReCaptchaV3.html?utm_source=github&utm_medium=banner_repo&utm_campaign=scraping&utm_term=giorgos" rel="nofollow">reCAPTCHA V3</a>, <a href="https://docs.capsolver.com/guide/captcha/HCaptcha.html?utm_source=github&utm_medium=banner_repo&utm_campaign=scraping&utm_term=giorgos" rel="nofollow">hCaptcha</a>, and more. With API and extension options, it’s perfect for any web scraping project. </b>
+            <div>
+              <img src="https://www.searchapi.io/press/v1/svg/searchapi_logo_black_h.svg" width="180" alt="Google Maps API for easy SERP scraping"/>
+            </div>
+            <b>Google Maps API for easy SERP scraping</b>
 		</a>
 	</p>
 </div>
@@ -37,33 +29,18 @@
 
 ![Google maps scraper](https://github.com/gosom/google-maps-scraper/blob/main/banner.png)
 
-A command line and web based google maps scraper build using 
+## 🚀 Please [vote](https://github.com/gosom/google-maps-scraper/discussions/61) for the next features
+
+A command line google maps scraper build using 
 
 [scrapemate](https://github.com/gosom/scrapemate) web crawling framework.
 
 You can use this repository either as is, or you can use it's code as a base and
 customize it to your needs
 
+**Update** Added email extraction from business website support
 
 ## Try it
-
-### Web UI:
-
-![Example GIF](img/example.gif)
-
-
-```
-mkdir -p gmapsdata && docker run -v $PWD/gmapsdata:/gmapsdata -p 8080:8080 gosom/google-maps-scraper -data-folder /gmapsdata
-```
-
-Or dowload the [binary](https://github.com/gosom/google-maps-scraper/releases) for your platform and run it.
-
-Note: Even if you add one keyword the results will come in at least 3 minutes. This is a minimum configured runtime
-
-Note: for MacOS the docker command should not work. **HELP REQUIRED**
-
-
-### Command line:
 
 ```
 touch results.csv && docker run -v $PWD/example-queries.txt:/example-queries -v $PWD/results.csv:/results.csv gosom/google-maps-scraper -depth 1 -input /example-queries -results /results.csv -exit-on-inactivity 3m
@@ -90,8 +67,6 @@ Your support helps ensure continued improvement and maintenance.
 - Dockerized for easy run in multiple platforms
 - Scalable in multiple machines
 - Optionally extracts emails from the website of the business
-- SOCKS5/HTTP/HTTPS proxy support
-- Serverless execution via AWS Lambda functions (experimental & no documentation yet)
 
 ## Notes on email extraction
 
@@ -191,90 +166,30 @@ The results are written when they arrive in the `results` file you specified
 try `./google-maps-scraper -h` to see the command line options available:
 
 ```
-  -aws-access-key string
-        AWS access key
-  -aws-lambda
-        run as AWS Lambda function
-  -aws-lambda-chunk-size int
-        AWS Lambda chunk size (default 100)
-  -aws-lambda-invoker
-        run as AWS Lambda invoker
-  -aws-region string
-        AWS region
-  -aws-secret-key string
-        AWS secret key
   -c int
-        sets the concurrency [default: half of CPU cores] (default 11)
+        sets the concurrency. By default it is set to half of the number of CPUs (default 8)
   -cache string
-        sets the cache directory [no effect at the moment] (default "cache")
-  -data-folder string
-        data folder for web runner (default "webdata")
+        sets the cache directory (no effect at the moment) (default "cache")
   -debug
-        enable headful crawl (opens browser window) [default: false]
+        Use this to perform a headfull crawl (it will open a browser window) [only when using without docker]
   -depth int
-        maximum scroll depth in search results [default: 10] (default 10)
+        is how much you allow the scraper to scroll in the search results. Experiment with that value (default 10)
   -dsn string
-        database connection string [only valid with database provider]
+        Use this if you want to use a database provider
   -email
-        extract emails from websites
+        Use this to extract emails from the websites
   -exit-on-inactivity duration
-        exit after inactivity duration (e.g., '5m')
-  -function-name string
-        AWS Lambda function name
-  -geo string
-        set geo coordinates for search (e.g., '37.7749,-122.4194')
+        program exits after this duration of inactivity(example value '5m')
   -input string
-        path to the input file with queries (one per line) [default: empty]
+        is the path to the file where the queries are stored (one query per line). By default it reads from stdin (default "stdin")
   -json
-        produce JSON output instead of CSV
+        Use this to produce a json file instead of csv (not available when using db)
   -lang string
-        language code for Google (e.g., 'de' for German) [default: en] (default "en")
+        is the languate code to use for google (the hl urlparam).Default is en . For example use de for German or el for Greek (default "en")
   -produce
-        produce seed jobs only (requires dsn)
-  -proxies string
-        comma separated list of proxies to use in the format protocol://user:pass@host:port example: socks5://localhost:9050 or http://user:pass@localhost:9050
+        produce seed jobs only (only valid with dsn)
   -results string
-        path to the results file [default: stdout] (default "stdout")
-  -s3-bucket string
-        S3 bucket name
-  -web
-        run web server instead of crawling
-  -writer string
-        use custom writer plugin (format: 'dir:pluginName')
-  -zoom int
-        set zoom level (0-21) for search
-```
-
-## Using a custom writer
-
-In cases the results need to be written in a custom format or in another system like a db a message queue or basically anything the Go plugin system can be utilized.
-
-Write a Go plugin (see an example in examples/plugins/example_writeR.go) 
-
-Compile it using (for Linux):
-
-```
-go build -buildmode=plugin -tags=plugin -o ~/mytest/plugins/example_writer.so examples/plugins/example_writer.go
-```
-
-and then run the program using the `-writer` argument. 
-
-See an example:
-
-1. Write your plugin (use the examples/plugins/example_writer.go as a reference)
-2. Build your plugin `go build -buildmode=plugin -tags=plugin -o ~/myplugins/example_writer.so plugins/example_writer.go`
-3. Download the lastes [release](https://github.com/gosom/google-maps-scraper/releases/) or build the program
-4. Run the program like `./google-maps-scraper -writer ~/myplugins:DummyPrinter -input example-queries.txt`
-
-
-### Plugins and Docker
-
-It is possible to use the docker image and use tha plugins.
-In such case make sure that the shared library is build using a compatible GLIB version with the docker image.
-otherwise you will encounter an error like:
-
-```
-/lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by /plugins/example_writer.so)
+        is the path to the file where the results will be written (default "stdout")
 ```
 
 
@@ -350,10 +265,6 @@ Please replace the values or the command args accordingly
 Note: Keep in mind that because the application starts a headless browser it requires CPU and memory. 
 Use an appropriate kubernetes cluster
 
-## Telemetry
-
-Anonymous usage statistics are collected for debug and improvement reasons. 
-You can opt out by setting the env variable `DISABLE_TELEMETRY=1`
 
 ## Perfomance
 
@@ -402,3 +313,4 @@ banner is generated using OpenAI's DALE
 <a href="https://www.searchapi.io/?via=gosom" rel="nofollow"> searchapi.com</a> sponsors this project via Github sponsors.
 
 If you register via the links on my page I get a commission. This is another way to support my work
+
