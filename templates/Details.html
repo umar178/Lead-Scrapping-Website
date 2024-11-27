@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="\static\DetailStyle.css">
 </head>
 <body>
-
     <div class="page">
         <div class="Left">
             <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
@@ -16,29 +15,117 @@
                     <li><a href="{{ url_for('details') }}">Project Details</a></li>
                 </ul>
             </div>
-
-            <div class="Left">
-
+            <div class="options">
+                <button onclick="showProject()">Project Overview</button>
+                <button onclick="showMembers()">Members</button>
+                <button onclick="showScope()">Scope</button>
+                <button onclick="showFunctionality()">Functionality</button>
+            </div>
+        </div>
+        <div class="Right">
+            <div class="Members" id="Members">
                 <center>
-                    <div class="options">
-                        <button>Project Overview</button>
-                        <br />
-                        <button>Members</button>
-                        <br />
-                        <button>Scope</button>
-                        <br />
-                        <button>Functionality</button>
+                    <div class="member">
+                        <div class="member-info">
+                            <img src="\static\images\umar.jpg" alt="Umar Karim" class="member-img">
+                            <div class="details">
+                                <h2>Umar Karim</h2>
+                                <p>ID: 24k-0880</p>
+                                <p>Role: Project Manager, Backend dev</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member">
+                        <div class="member-info">
+                            <img src="\static\images\akbar.jpg" alt="Sarah Ahmed" class="member-img">
+                            <div class="details">
+                                <h2>Akbar Younsi</h2>
+                                <p>ID: 24k-0947</p>
+                                <p>Role: Front End HTML</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member">
+                        <div class="member-info">
+                            <img src="\static\images\rayyan.jpg" alt="John Doe" class="member-img">
+                            <div class="details">
+                                <h2>Rayyan Asif</h2>
+                                <p>ID: 11223</p>
+                                <p>Role: Front End JS</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member">
+                        <div class="member-info">
+                            <img src="\static\images\ali.jpg" alt="Jane Smith" class="member-img">
+                            <div class="details">
+                                <h2>Ali Hasnain</h2>
+                                <p>ID: 44556</p>
+                                <p>Role: Front End CSS</p>
+                            </div>
+                        </div>
                     </div>
                 </center>
-
             </div>
-
-            <div class="Right">
-                <p>hi</p>
+            <div id="project" class="project">
+                <h1>Project Overview:</h1>
+                <p>
+                    This project aims to develop a web-based application that enables users to gather business leads from Google Maps based on specified criteria, such as location and business type. The application will allow users to enter their search criteria, generate a list of leads in real-time, display the data in a table format, and provide the option to download the data as a CSV file. Using Python for data scraping and backend functionality, the system will provide a streamlined solution for users needing targeted business lead information.
+                </p>
+                <h3>Objectives:</h3>
+                <ul>
+                    <li>To create a user-friendly web interface for collecting business leads based on user-defined criteria.</li>
+                    <li>To enable real-time data collection and visualization of business information from Google Maps.</li>
+                    <li>To provide downloadable CSV files for users to utilize the data for further analysis or outreach.</li>
+                </ul>
+            </div>
+            <div id="scope-of-work" class="scope-of-work">
+                <h1>Scope of Work:</h1>
+                <div class="scrollable-content">
+                    <h2>User Interface (Frontend)</h2>
+                    <ol>
+                        <li>Design a simple, responsive HTML form where users can input the location and business type.</li>
+                        <li>Display the generated list of leads in a clean, tabular format.</li>
+                        <li>Provide a download button to allow users to retrieve the data in CSV format.</li>
+                        <li>Style the frontend using Bootstrap or other CSS frameworks to ensure a professional and easy-to-navigate interface.</li>
+                    </ol>
+                    <h2>Backend (Python and Flask)</h2>
+                    <ol>
+                        <li>Set up a Flask application to handle form submission, lead generation, data storage, and CSV downloads.</li>
+                        <li>Use Python libraries such as requests, BeautifulSoup, or Selenium for data scraping (as permitted) or leverage Google Maps API where feasible.</li>
+                        <li>Store generated leads in a CSV file, which will be accessible through the web interface.</li>
+                    </ol>
+                    <h2>CSV Generation and Download</h2>
+                    <ol>
+                        <li>Integrate a CSV file generation feature that saves lead data in a structured format.</li>
+                        <li>Enable a Flask route for secure downloading of the CSV file by users.</li>
+                    </ol>
+                    <h2>Tools and Technologies:</h2>
+                    <ul>
+                        <li>Languages: Python, HTML, CSS, JavaScript, GO</li>
+                        <li>Frameworks: Flask for backend development</li>
+                        <li>Libraries: GO libraries and precompiled programs for scrapping.</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="functionality" class="functionality">
+                <h1>Scraper Details:</h1>
+                <p>
+                    The scraper accepts three key inputs:
+                </p>
+                <br />
+                <ul>
+                    <li><strong>Category:</strong> Specifies the field or industry from which you need leads.</li>
+                    <li><strong>Location:</strong> Defines the geographical area for lead extraction.</li>
+                    <li><strong>Timeout:</strong> Sets the duration for which the scraper will run.</li>
+                </ul>
+                <br />
+                <p>
+                    Once the inputs are provided, the scraper executes the script and processes data for the specified duration. During this time, the user must wait until the operation is complete. After the timeout expires, a table displaying the extracted leads and their details will appear on the right side of the page. Additionally, a download button will be available, allowing users to save the results in a file format of their choice.
+                </p>
             </div>
         </div>
     </div>
-
     <script src="\static\script.js"></script>
 </body>
 </html>

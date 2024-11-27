@@ -6,7 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="2fc86a17-51e9-46b6-80e7-8352397015c5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Lead-Scrapping-Website/FileContentIndex/2db44100-b140-4e39-934a-a54334c9e629.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Lead-Scrapping-Website/FileContentIndex/36a1e2fb-ccfb-4bdb-9be3-ea2a49a95c98.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Lead-Scrapping-Website/FileContentIndex/6903b2f3-da3b-4b46-b44d-bbf0f1b101b6.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Lead-Scrapping-Website/FileContentIndex/6c41de56-414a-4ef1-98ac-27e9f82b3f2c.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Lead-Scrapping-Website/FileContentIndex/93f03c4d-bf6f-4c0d-a9e5-c0c0f423a15d.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/Lead-Scrapping-Website/v17/.wsuo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/Lead-Scrapping-Website/v17/.wsuo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/DetailStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/DetailStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
