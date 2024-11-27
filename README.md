@@ -2,10 +2,10 @@
 ## Prerequisites
 To get started, you’ll need the following tools installed on your system:
 
--Python
--GoLang
--PyCharm
--Flask (Python library)
+- Python
+- GoLang
+- PyCharm
+- Flask (Python library)
 
 ## Setup Instructions
 Clone or download this repository to your local machine.
